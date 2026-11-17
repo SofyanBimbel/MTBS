@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tatalaksana Umum Gizi Buruk pada Balita (MPI.1)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#f4f6f1; --card:#ffffff; --ink:#14302d; --ink-2:#4a6661; --line:#d5dfd7;
+    --moss:#2c6e60; --moss-ink:#ffffff; --band:#14302d; --band-ink:#f4f6f1;
+    --marigold:#e8a33d; --marigold-soft:#fbefd6;
+    --red:#b03a2e; --red-soft:#f9e6e3;
+    --green:#2e7d5b; --green-soft:#e2f2ea;
+    --blue:#2c5e9e; --blue-soft:#e4edf8;
+    --amber:#9a5f0c; --amber-soft:#fbf0dc;
+    --radius:14px;
+    --serif:"Fraunces", Georgia, "Times New Roman", serif;
+    --sans:"Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#0f1c1a; --card:#152623; --ink:#e6efeb; --ink-2:#9db3ad; --line:#2a3f3b;
+      --moss:#6fbfa9; --moss-ink:#0f1c1a; --band:#0a1514; --band-ink:#e6efeb;
+      --marigold:#f0b657; --marigold-soft:#3a2d14;
+      --red:#f08070; --red-soft:#3a1b17;
+      --green:#6fcf9f; --green-soft:#15302a;
+      --blue:#8fb6ea; --blue-soft:#18283d;
+      --amber:#f0b657; --amber-soft:#3a2d14;
+    }
+  }
+
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.6; padding-bottom:env(safe-area-inset-bottom,0px); }
+  :focus-visible { outline:3px solid var(--marigold); outline-offset:2px; border-radius:4px; }
+
+  .wrap { max-width:1080px; margin:0 auto; padding:0 18px; }
+
+  /* ---------- masthead ---------- */
+  .masthead { background:var(--band); color:var(--band-ink); padding:44px 0 40px; position:relative; overflow:hidden; }
+  .masthead::after { content:""; position:absolute; right:-60px; top:-60px; width:260px; height:260px; border-radius:50%; border:44px solid var(--marigold); opacity:.18; }
+  .kicker { margin:0 0 10px; font-size:.92rem; color:var(--marigold); font-weight:600; }
+  .masthead h1 { margin:0; font-family:var(--serif); font-weight:700; font-size:clamp(2rem,5vw,3.25rem); line-height:1.08; letter-spacing:-.01em; max-width:16ch; }
+  .masthead .lede { margin:14px 0 0; max-width:60ch; opacity:.85; font-size:1.02rem; }
+
+  .caution { margin:-22px auto 0; position:relative; background:var(--card); color:var(--ink); border:1px solid var(--line); border-left:6px solid var(--red); border-radius:var(--radius); padding:14px 18px; max-width:1080px; width:calc(100% - 36px); box-shadow:0 10px 30px -18px rgba(20,48,45,.45); font-size:.94rem; }
+  .caution strong { color:var(--red); }
+
+  /* ---------- tabs ---------- */
+  nav.tabs { display:flex; gap:4px; overflow-x:auto; scrollbar-width:none; max-width:1080px; margin:22px auto 0; padding:0 18px; border-bottom:1px solid var(--line); }
+  nav.tabs::-webkit-scrollbar { display:none; }
+  nav.tabs button { font:inherit; font-weight:600; font-size:.95rem; white-space:nowrap; background:none; border:0; color:var(--ink-2); padding:12px 14px 13px; cursor:pointer; border-bottom:3px solid transparent; margin-bottom:-1px; }
+  nav.tabs button:hover { color:var(--ink); }
+  nav.tabs button.active { color:var(--ink); border-bottom-color:var(--marigold); }
+
+  main { max-width:1080px; margin:0 auto; padding:24px 18px 48px; }
+  section.tab { display:none; animation:rise .45s ease both; }
+  section.tab.active { display:block; }
+  @keyframes rise { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+  @media (prefers-reduced-motion: reduce) { section.tab { animation:none; } html { scroll-behavior:auto; } }
+
+  .panel { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:22px; margin-bottom:18px; }
+  .panel h2 { margin:0 0 6px; font-family:var(--serif); font-weight:700; font-size:1.4rem; line-height:1.2; }
+  .panel h2::before { content:""; display:block; width:38px; height:4px; border-radius:4px; background:var(--marigold); margin-bottom:12px; }
+  .panel > p:first-of-type, .lead { color:var(--ink-2); margin:0 0 14px; }
+  .hint { font-size:.85rem; color:var(--ink-2); margin:6px 0 0; }
+  ol.steps, ul.list { padding-left:22px; margin:8px 0; }
+  ol.steps li, ul.list li { margin:6px 0; }
+
+  /* ---------- alur layout ---------- */
+  .alur-grid { display:grid; grid-template-columns:minmax(0,1.45fr) minmax(0,1fr); gap:20px; align-items:start; }
+  .side { position:sticky; top:14px; }
+  @media (max-width:860px) { .alur-grid { grid-template-columns:1fr; } .side { position:static; } }
+
+  .form-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:16px; }
+  label { display:block; font-size:.92rem; font-weight:600; margin-bottom:6px; }
+  input[type=number], select { width:100%; padding:10px 12px; border:1.5px solid var(--line); border-radius:10px; font:inherit; background:var(--paper); color:var(--ink); transition:border-color .15s; }
+  input[type=number]:focus, select:focus { outline:none; border-color:var(--moss); }
+
+  .checks { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:8px; }
+  .check { display:flex; gap:10px; align-items:flex-start; padding:10px 12px; border:1.5px solid var(--line); border-radius:10px; background:var(--paper); cursor:pointer; font-weight:500; font-size:.93rem; margin:0; }
+  .check:has(input:checked) { border-color:var(--red); background:var(--red-soft); }
+  .check input { margin-top:4px; accent-color:var(--red); }
+  .sub { font-weight:700; font-size:.85rem; color:var(--ink-2); text-transform:none; margin:18px 0 8px; }
+
+  .btnrow { display:flex; gap:10px; flex-wrap:wrap; margin-top:18px; }
+  .btn { font:inherit; font-weight:700; border:1.5px solid var(--moss); background:var(--moss); color:var(--moss-ink); padding:11px 18px; border-radius:999px; cursor:pointer; transition:transform .12s, filter .12s; }
+  .btn:hover { filter:brightness(1.07); }
+  .btn:active { transform:scale(.97); }
+  .btn.ghost { background:transparent; color:var(--moss); }
+
+  /* rail (alur) */
+  .rail-title { margin:0 0 14px; font-family:var(--serif); font-size:1.15rem; font-weight:700; }
+  .rail { list-style:none; margin:0; padding:0; }
+  .rail li { position:relative; padding:0 0 18px 30px; font-size:.93rem; }
+  .rail li::before { content:""; position:absolute; left:4px; top:5px; width:14px; height:14px; border-radius:50%; background:var(--card); border:3px solid var(--ink-2); }
+  .rail li::after { content:""; position:absolute; left:10px; top:22px; bottom:0; width:2px; background:var(--line); }
+  .rail li:last-child { padding-bottom:0; }
+  .rail li:last-child::after { display:none; }
+  .rail li.red::before { border-color:var(--red); }
+  .rail li.blue::before { border-color:var(--blue); }
+  .rail li.green::before { border-color:var(--green); }
+  .rail li b { display:block; font-size:.98rem; }
+  .rail li small { color:var(--ink-2); }
+  .rail .branch { display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px; }
+  .rail .branch div { border-radius:10px; padding:9px 10px; font-size:.87rem; background:var(--paper); border:1px solid var(--line); }
+  .rail .branch .g { border-color:var(--green); background:var(--green-soft); }
+  .rail .branch .r { border-color:var(--red); background:var(--red-soft); }
+
+  /* results */
+  .result { border-radius:var(--radius); padding:18px 20px; margin-top:18px; border:1px solid var(--line); border-left-width:6px; background:var(--card); animation:rise .35s ease both; }
+  .result h3 { margin:0 0 8px; font-family:var(--serif); font-size:1.2rem; line-height:1.25; }
+  .result ul { margin:6px 0 0; padding-left:20px; }
+  .result li { margin:4px 0; }
+  .result p { margin:6px 0 0; }
+  .result.ok { border-left-color:var(--green); background:var(--green-soft); }
+  .result.warn { border-left-color:var(--red); background:var(--red-soft); }
+  .result.info { border-left-color:var(--blue); background:var(--blue-soft); }
+  .result.amber { border-left-color:var(--marigold); background:var(--amber-soft); }
+
+  /* gain scale */
+  .scale { position:relative; height:14px; margin:18px 0 26px; border-radius:99px; overflow:visible; }
+  .scale .zones { position:absolute; inset:0; display:grid; grid-template-columns:1fr 1fr 1fr; border-radius:99px; overflow:hidden; }
+  .scale .zones span:nth-child(1) { background:var(--red); opacity:.45; }
+  .scale .zones span:nth-child(2) { background:var(--marigold); opacity:.6; }
+  .scale .zones span:nth-child(3) { background:var(--green); opacity:.5; }
+  .scale .marker { position:absolute; top:-6px; width:6px; height:26px; margin-left:-3px; border-radius:3px; background:var(--ink); }
+  .scale-labels { position:relative; height:18px; font-size:.78rem; color:var(--ink-2); }
+  .scale-labels span { position:absolute; transform:translateX(-50%); }
+  .scale-labels span:first-child { transform:none; }
+  .scale-labels span:last-child { transform:translateX(-100%); }
+
+  /* tables */
+  .table-wrap { overflow-x:auto; border-radius:10px; border:1px solid var(--line); }
+  table { width:100%; border-collapse:collapse; font-size:.92rem; }
+  th, td { text-align:left; padding:11px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th { background:var(--paper); font-weight:700; }
+  tr:last-child td { border-bottom:0; }
+  td.num { font-family:var(--serif); font-size:1.02rem; font-weight:700; white-space:nowrap; }
+
+  /* progress checklist */
+  .progress { height:6px; background:var(--line); border-radius:99px; overflow:hidden; margin:4px 0 6px; }
+  .progress span { display:block; height:100%; width:0; background:var(--marigold); transition:width .3s ease; }
+  .progress-label { font-size:.85rem; color:var(--ink-2); font-weight:600; }
+  .todo label.item { display:flex; gap:12px; align-items:flex-start; font-weight:500; margin:0 0 8px; padding:11px 12px; border-radius:10px; border:1px solid var(--line); background:var(--paper); cursor:pointer; font-size:.94rem; }
+  .todo label.item:has(input:checked) { background:var(--green-soft); border-color:var(--green); }
+  .todo input { margin-top:4px; accent-color:var(--green); }
+
+  /* phases */
+  details.fase { border:1px solid var(--line); border-left:6px solid var(--c, var(--moss)); border-radius:var(--radius); margin:12px 0; background:var(--card); overflow:hidden; }
+  details.fase summary { cursor:pointer; list-style:none; padding:15px 18px; font-family:var(--serif); font-weight:700; font-size:1.08rem; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  details.fase summary::-webkit-details-marker { display:none; }
+  details.fase summary::after { content:"+"; font-family:var(--sans); font-size:1.4rem; font-weight:500; color:var(--ink-2); transition:transform .2s; }
+  details.fase[open] summary::after { content:"−"; }
+  details.fase summary small { display:block; font-family:var(--sans); font-weight:500; font-size:.85rem; color:var(--ink-2); margin-top:2px; }
+  details.fase > div { padding:0 18px 16px 18px; border-top:1px dashed var(--line); padding-top:14px; }
+  details.fase p { margin:8px 0; }
+
+  .phase-strip { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; margin:4px 0 6px; }
+  .phase-strip span { height:10px; border-radius:99px; background:var(--c); opacity:.85; }
+  @media (max-width:560px) { .phase-strip { grid-template-columns:1fr 1fr; } }
+
+  /* bayi paths */
+  .paths { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .path { border-radius:var(--radius); padding:18px; border:1px solid var(--line); }
+  .path h3 { margin:0 0 8px; font-family:var(--serif); font-size:1.12rem; }
+  .path.asi { background:var(--blue-soft); border-color:var(--blue); }
+  .path.formula { background:var(--amber-soft); border-color:var(--marigold); }
+  @media (max-width:640px) { .paths { grid-template-columns:1fr; } }
+
+  .pull { font-family:var(--serif); font-size:1.12rem; line-height:1.45; margin:6px 0 14px; padding-left:16px; border-left:3px solid var(--marigold); }
+
+  .foot { text-align:center; font-size:.82rem; color:var(--ink-2); padding:28px 18px 36px; }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="kicker">Modul MPI.1 · Pelatihan MTBS dan Gizi Buruk</p>
+    <h1>Tatalaksana Umum Gizi Buruk pada Balita</h1>
+    <p class="lede">Alat bantu belajar untuk memahami alur penapisan, pilihan layanan, empat fase perawatan, dan pemantauan pemulihan balita gizi buruk.</p>
+  </div>
+</header>
+
+<aside class="caution" role="note">
+  <strong>Penting.</strong> Alat ini untuk pembelajaran dan membantu memahami alur dari modul. Alat ini <b>bukan pengganti penilaian klinis</b>. Dosis obat, formula, dan antibiotik harus diambil dari tabel resmi di modul MPI.1 dan pedoman terbaru, bukan dari aplikasi ini. Tanda bahaya atau kegawatdaruratan harus segera ditangani dan dirujuk.
+</aside>
+
+<nav class="tabs" aria-label="Bagian materi">
+  <button class="active" data-tab="alur">Alur dan penapisan</button>
+  <button data-tab="nafsu">Tes nafsu makan</button>
+  <button data-tab="fase">Empat fase</button>
+  <button data-tab="bayi">Bayi di bawah 6 bulan</button>
+  <button data-tab="pantau">Pemantauan dan pulang</button>
+  <button data-tab="glos">Rujukan modul</button>
+</nav>
+
+<main>
+
+<!-- ================= ALUR & PENAPISAN ================= -->
+<section class="tab active" id="alur">
+  <div class="alur-grid">
+    <div>
+      <div class="panel">
+        <h2>Penapisan balita</h2>
+        <p class="lead">Isi data pemeriksaan. Kolom yang kosong tidak ikut dinilai.</p>
+        <div class="form-grid">
+          <div>
+            <label for="usia">Usia (bulan)</label>
+            <input type="number" id="usia" min="0" max="59" step="1" placeholder="contoh: 14">
+          </div>
+          <div>
+            <label for="bb">Berat badan (kg)</label>
+            <input type="number" id="bb" min="0" step="0.1" placeholder="contoh: 6.5">
+          </div>
+          <div>
+            <label for="lila">LiLA (cm)</label>
+            <input type="number" id="lila" min="0" step="0.1" placeholder="contoh: 11.2">
+          </div>
+          <div>
+            <label for="z">Skor-Z BB/PB atau BB/TB</label>
+            <input type="number" id="z" step="0.1" placeholder="contoh: -3.4">
+            <div class="hint">Dari plotting grafik WHO 2006. Kosongkan jika tidak tersedia.</div>
+          </div>
+          <div>
+            <label for="edema">Edema bilateral (pitting)</label>
+            <select id="edema">
+              <option value="0">Tidak ada</option>
+              <option value="1">Ringan (+): kedua punggung kaki</option>
+              <option value="2">Sedang (++): punggung kaki dan tungkai bawah</option>
+              <option value="3">Berat (+++): seluruh tubuh (anasarka)</option>
+            </select>
+          </div>
+          <div>
+            <label for="asi">Pemberian ASI (bayi di bawah 6 bulan)</label>
+            <select id="asi">
+              <option value="ada">Ada kemungkinan pemberian ASI (menyusui atau relaktasi)</option>
+              <option value="tidak">Tidak ada kemungkinan pemberian ASI</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Tanda bahaya</h2>
+        <p class="lead">Centang bila ditemukan. Tanda bahaya memerlukan penanganan segera.</p>
+        <div class="checks">
+          <label class="check"><input type="checkbox" id="tb1"> Renjatan (syok), misalnya capillary refill lebih dari 3 detik</label>
+          <label class="check"><input type="checkbox" id="tb2"> Letargis atau penurunan kesadaran</label>
+          <label class="check"><input type="checkbox" id="tb3"> Diare dan/atau muntah dengan tanda dehidrasi</label>
+        </div>
+        <p class="sub">Komplikasi medis yang dinilai (MPI.1)</p>
+        <div class="checks" id="komp">
+          <label class="check"><input type="checkbox" value="anoreksia"> Anoreksia</label>
+          <label class="check"><input type="checkbox" value="dehidrasi"> Dehidrasi berat (muntah terus-menerus, diare)</label>
+          <label class="check"><input type="checkbox" value="letargi"> Letargi atau penurunan kesadaran</label>
+          <label class="check"><input type="checkbox" value="demam"> Demam tinggi</label>
+          <label class="check"><input type="checkbox" value="pneumonia"> Pneumonia (sulit bernapas atau napas cepat)</label>
+          <label class="check"><input type="checkbox" value="anemia"> Anemia berat</label>
+        </div>
+        <div class="btnrow">
+          <button class="btn" id="tentukan">Tentukan status dan layanan</button>
+          <button class="btn ghost" id="resetAlur">Reset</button>
+        </div>
+      </div>
+
+      <div id="hasilAlur"></div>
+    </div>
+
+    <aside class="side">
+      <div class="panel">
+        <h3 class="rail-title">Alur layanan</h3>
+        <ol class="rail">
+          <li><b>Pemeriksaan</b><small>Anamnesis, BB, PB/TB, LiLA, edema bilateral, dan pemeriksaan fisik terintegrasi MTBS</small></li>
+          <li><b>Tentukan status gizi</b><small>Gizi buruk atau gizi kurang berdasarkan BB/PB atau BB/TB (WHO 2006), LiLA, dan edema</small></li>
+          <li class="red"><b>Periksa tanda bahaya dan komplikasi</b><small>Ada komplikasi, bayi di bawah 6 bulan, atau BB kurang dari 4 kg (usia di atas 6 bulan): rawat inap</small></li>
+          <li class="blue"><b>Tes nafsu makan dengan RUTF atau F-100</b><small>Untuk balita 6–59 bulan tanpa komplikasi</small>
+            <div class="branch">
+              <div class="g"><b>Nafsu makan baik</b>Rawat jalan di puskesmas</div>
+              <div class="r"><b>Nafsu makan buruk</b>Rawat inap</div>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= TES NAFSU MAKAN ================= -->
+<section class="tab" id="nafsu">
+  <div class="panel">
+    <h2>Tes nafsu makan</h2>
+    <p class="lead">Untuk balita 6–59 bulan yang calon rawat jalan.</p>
+    <ol class="steps">
+      <li>Lakukan tes paling cepat 2 jam setelah balita makan.</li>
+      <li>Pilih tempat yang tenang. Jelaskan tujuan tes kepada ibu atau pengasuh.</li>
+      <li>Dorong ibu atau pengasuh untuk tidak terburu-buru dan terus membujuk dengan lembut.</li>
+      <li>Gunakan RUTF (atau F-100 bila RUTF tidak tersedia), lalu catat hasilnya.</li>
+    </ol>
+  </div>
+
+  <div class="panel">
+    <h2>Jumlah RUTF dalam 30 menit sampai 1 jam</h2>
+    <p class="lead">Jumlah yang harus dihabiskan anak, menurut berat badan (MPI.1).</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Berat badan anak</th><th>Minimal (bungkus)</th><th>Maksimal (bungkus)</th></tr>
+        <tr><td>Kurang dari 4 kg</td><td class="num">1/8</td><td class="num">1/4</td></tr>
+        <tr><td>4 – 6,9 kg</td><td class="num">1/4</td><td class="num">1/3</td></tr>
+        <tr><td>7 – 9,9 kg</td><td class="num">1/3</td><td class="num">1/2</td></tr>
+        <tr><td>10 – 14,9 kg</td><td class="num">1/2</td><td class="num">3/4</td></tr>
+      </table>
+    </div>
+    <p class="hint">Tabel ini rujukan dari modul. Bila tes gagal atau RUTF tidak tersedia, lakukan tes dengan F-100 sesuai langkah di modul.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Hasil tes</h2>
+    <div class="form-grid" style="grid-template-columns:1fr">
+      <div>
+        <label for="hasilNafsu">Pilih hasil yang teramati</label>
+        <select id="hasilNafsu">
+          <option value="baik">Baik: anak menghabiskan jumlah yang ditentukan, lahap, dan ingin makan terus</option>
+          <option value="buruk">Buruk: anak makan dengan bujukan terus-menerus atau menolak makan</option>
+        </select>
+      </div>
+    </div>
+    <div class="btnrow"><button class="btn" id="cekNafsu">Lihat tindak lanjut</button></div>
+    <div id="hasilNafsuOut"></div>
+  </div>
+</section>
+
+<!-- ================= EMPAT FASE ================= -->
+<section class="tab" id="fase">
+  <div class="panel">
+    <h2>Empat fase tata laksana</h2>
+    <p class="lead">Fase berurutan. Peralihan dinilai dari kondisi klinis dan nafsu makan, bukan semata dari hitungan hari.</p>
+    <div class="phase-strip" aria-hidden="true">
+      <span style="--c:#b03a2e"></span><span style="--c:#e8a33d"></span><span style="--c:#2c6e60"></span><span style="--c:#2c5e9e"></span>
+    </div>
+
+    <details class="fase" open style="--c:#b03a2e">
+      <summary>Fase 1: Stabilisasi <small>Umumnya 1–2 hari, dapat sampai 1 minggu</small></summary>
+      <div>
+        <p><b>Tujuan:</b> menstabilkan kondisi klinis anak. Pada fase ini <b>tidak untuk menaikkan berat badan</b>.</p>
+        <p><b>Prioritas kegawatdaruratan yang mengancam jiwa:</b></p>
+        <ul class="list">
+          <li><b>Hipoglikemia</b> (gula darah kurang dari 3 mmol/L atau kurang dari 54 mg/dL): tangani segera. Pemberian gula atau glukosa diikuti F-75 sesuai modul.</li>
+          <li><b>Hipotermia</b> (suhu aksila kurang dari 36 °C): hangatkan tubuh, termasuk metode kanguru, dan pantau suhu. Hipotermia bersama hipoglikemia menandakan infeksi berat.</li>
+          <li><b>Dehidrasi dan gangguan elektrolit:</b> semua balita gizi buruk dengan diare atau penurunan urine dianggap dehidrasi ringan. Rehidrasi dengan ReSoMal, bukan infus, kecuali dehidrasi berat dengan syok.</li>
+          <li><b>Infeksi:</b> anggap semua balita gizi buruk terinfeksi saat datang, dan beri antibiotik segera sesuai tabel modul.</li>
+        </ul>
+        <p><b>Pemberian makan:</b> mulai segera bila tidak ada kegawatdaruratan, dimulai dari F-75 (rendah protein dan laktosa), sesuai jadwal di modul.</p>
+      </div>
+    </details>
+
+    <details class="fase" style="--c:#e8a33d">
+      <summary>Fase 2: Transisi <small>Biasanya setelah 2–7 hari</small></summary>
+      <div>
+        <p><b>Tanda masuk fase transisi:</b></p>
+        <ul class="list">
+          <li>Komplikasi medis teratasi</li>
+          <li>Nafsu makan pulih</li>
+          <li>Edema berkurang</li>
+        </ul>
+        <p><b>Kegiatan:</b> lanjutkan pengobatan infeksi dan komplikasi lain, pantau kemajuan dan tanda bahaya, serta siapkan tindak lanjut di rumah bila fase rehabilitasi dilakukan di rawat jalan.</p>
+        <p><b>Asupan:</b> tubuh beradaptasi terhadap energi dan protein yang lebih tinggi, bertahap dari F-75 ke F-100 atau RUTF sesuai tabel kebutuhan zat gizi.</p>
+      </div>
+    </details>
+
+    <details class="fase" style="--c:#2c6e60">
+      <summary>Fase 3: Rehabilitasi <small>Umumnya 2–4 minggu, bagian dari pemulihan 4–12 minggu</small></summary>
+      <div>
+        <p><b>Tujuan:</b> pemberian makan untuk tumbuh kejar.</p>
+        <ul class="list">
+          <li>Mendorong balita untuk makan</li>
+          <li>Memulai kembali atau mendorong tetap menyusui bila masih menyusui</li>
+          <li>Stimulasi perkembangan mental dan fisik</li>
+          <li>Menyiapkan ibu atau pengasuh untuk pengasuhan di rumah</li>
+        </ul>
+        <p><b>Kemajuan terapi</b> dinilai dari kenaikan berat badan (lihat tab Pemantauan).</p>
+      </div>
+    </details>
+
+    <details class="fase" style="--c:#2c5e9e">
+      <summary>Fase 4: Tindak lanjut <small>Setelah pulang</small></summary>
+      <div>
+        <p>Lanjutan pemberian makan untuk tumbuh kejar dengan makanan keluarga dan Pemberian Makanan Tambahan Pemulihan (PMT-P). Pemulihan gizi umumnya memerlukan sekitar 6 bulan sesuai modul.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="panel">
+    <h2>Langkah tata laksana yang dibahas di modul</h2>
+    <p class="lead">Daftar ini memuat topik yang dibahas di modul. Nomor resmi dari modul asli tidak ditampilkan, jadi rujuk modul untuk urutan resminya.</p>
+    <div class="progress"><span id="bar-langkah"></span></div>
+    <div class="progress-label" id="out-langkah"></div>
+    <div class="todo" id="todo10" style="margin-top:12px">
+      <label class="item"><input type="checkbox"> Fase stabilisasi: atasi kegawatdaruratan (hipoglikemia, hipotermia, dehidrasi, syok)</label>
+      <label class="item"><input type="checkbox"> Pemberian antibiotik spektrum luas pada semua balita gizi buruk</label>
+      <label class="item"><input type="checkbox"> Pemberian makan bertahap dengan F-75, lalu F-100 atau RUTF</label>
+      <label class="item"><input type="checkbox"> Penggantian keseimbangan elektrolit dan mineral (mineral mix, ReSoMal)</label>
+      <label class="item"><input type="checkbox"> Pengobatan infeksi dan komplikasi lain</label>
+      <label class="item"><input type="checkbox"> Zat gizi mikro (vitamin A dosis tinggi, asam folat, multivitamin, zat besi sesuai tahap)</label>
+      <label class="item"><input type="checkbox"> Imunisasi campak sebelum pulang, bila belum pernah diimunisasi (ditunda bila syok)</label>
+      <label class="item"><input type="checkbox"> Stimulasi tumbuh kembang terstruktur, 15–30 menit per hari</label>
+      <label class="item"><input type="checkbox"> Pemantauan dan penilaian kemajuan terapi</label>
+      <label class="item"><input type="checkbox"> Persiapan tindak lanjut di rumah dan konseling pengasuh</label>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BAYI < 6 BULAN ================= -->
+<section class="tab" id="bayi">
+  <div class="panel">
+    <h2>Bayi di bawah 6 bulan dengan gizi buruk</h2>
+    <p class="pull">Bayi di bawah 6 bulan dengan gizi buruk harus dirawat inap. ASI adalah bagian terpenting untuk pemulihan.</p>
+    <p>Tatalaksananya perlu perhatian khusus karena sering ada penyebab organik atau kelainan bawaan, bisa lahir prematur, dan sering ada masalah asupan. Fisiologinya berbeda dari balita, sehingga F-100 tidak cocok tanpa pengenceran.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Pilih jalur</h2>
+    <p class="lead">Tentukan apakah ada kemungkinan pemberian ASI.</p>
+    <div class="paths">
+      <div class="path asi">
+        <h3>Ada kemungkinan ASI</h3>
+        <ul class="list">
+          <li>Bayi masih menyusu tetapi kurang gizi</li>
+          <li>Bayi sudah tidak menyusu tetapi ibu masih ingin menyusui (relaktasi)</li>
+          <li>Ibu sudah tidak ada, tetapi ada ibu pesusuan</li>
+        </ul>
+      </div>
+      <div class="path formula">
+        <h3>Tidak ada kemungkinan ASI</h3>
+        <ul class="list">
+          <li>Bayi tidak pernah menyusu dan ibu tidak mau relaktasi</li>
+          <li>Bayi sudah berhenti menyusu, ibu tidak mau relaktasi, dan tidak ada ibu pesusuan</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Jalur bayi yang mendapat ASI atau relaktasi</h2>
+    <ol class="steps">
+      <li><b>Fase stabilisasi:</b> atasi komplikasi sesuai protokol umum. Mulai refeeding dengan susu formula bayi, F-100 yang diencerkan, atau F-75 bila ada edema. Jumlah dan jadwal sesuai modul. Dukungan menyusu bertujuan meningkatkan produksi ASI.</li>
+      <li><b>Fase transisi:</b> formula tetap sama, tetapi bayi semakin banyak mendapat ASI dan secara bertahap hanya mendapat ASI saat pulang.</li>
+      <li><b>Fase rehabilitasi:</b> kurangi formula secara bertahap, pertahankan kenaikan berat badan, dan lanjutkan pemberian ASI.</li>
+    </ol>
+    <p class="sub">Kriteria pulang dan pindah ke rawat jalan</p>
+    <ul class="list">
+      <li>Relaktasi berhasil dengan menyusu efektif: kenaikan berat badan minimal 20 g/hari selama 5 hari berturut-turut, hanya dengan ASI</li>
+      <li>Tidak ada edema</li>
+      <li>Kondisi klinis baik, bayi sadar, tidak ada komplikasi medis</li>
+      <li>Ibu sudah mendapat konseling menyusui dan gizi seimbang</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h2>Bayi tanpa kemungkinan ASI, dan balita di atas 6 bulan dengan BB kurang dari 4 kg</h2>
+    <p class="lead">Tujuannya agar bayi mendapat makanan pengganti yang aman dan sesuai untuk pemulihan gizi. Pengasuh harus memahami cara menyiapkan dan memberikan formula yang aman.</p>
+    <ol class="steps">
+      <li><b>Fase stabilisasi:</b> susu formula bayi atau F-100 yang diencerkan, atau F-75 bila ada edema, diberikan tiap 2–3 jam dengan volume sesuai modul.</li>
+      <li><b>Fase transisi:</b> volume formula dinaikkan bertahap sesuai modul.</li>
+      <li><b>Syarat ke fase rehabilitasi:</b> nafsu makan baik (menghabiskan minimal 90% formula), berada minimal 2 hari di fase transisi, dan kondisi klinis baik tanpa komplikasi.</li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= PEMANTAUAN & PULANG ================= -->
+<section class="tab" id="pantau">
+  <div class="panel">
+    <h2>Yang dipantau dan dicatat</h2>
+    <ul class="list">
+      <li>Berat badan ditimbang setiap hari dengan ketelitian 10 g</li>
+      <li>Derajat edema (0 sampai +3)</li>
+      <li>Kesadaran dan tanda vital (suhu, frekuensi napas, dan nadi), minimal 2 kali sehari</li>
+      <li>Gejala klinis: pilek, batuk, muntah, defekasi, dehidrasi, pembesaran hati</li>
+      <li>Lainnya: menolak makan, rute asupan (oral, NGT, atau parenteral), dan transfusi bila ada</li>
+    </ul>
+  </div>
+
+  <div class="panel">
+    <h2>Hitung kenaikan berat badan harian</h2>
+    <div class="form-grid">
+      <div>
+        <label for="bb1">Berat badan awal (g)</label>
+        <input type="number" id="bb1" min="0" step="10" placeholder="contoh: 5800">
+      </div>
+      <div>
+        <label for="bb2">Berat badan akhir (g)</label>
+        <input type="number" id="bb2" min="0" step="10" placeholder="contoh: 5950">
+      </div>
+      <div>
+        <label for="hari">Jumlah hari</label>
+        <input type="number" id="hari" min="1" step="1" placeholder="contoh: 7">
+      </div>
+      <div>
+        <label for="bbRef">Berat badan referensi (kg)</label>
+        <input type="number" id="bbRef" min="0" step="0.1" placeholder="BB saat masuk (kg)">
+      </div>
+    </div>
+    <div class="btnrow"><button class="btn" id="hitungGain">Nilai kenaikan berat badan</button></div>
+    <div id="hasilGain"></div>
+    <p class="hint">Kategori mengikuti slide MPI.1: kurang bila kurang dari 5 g/kgBB/hari (setara 35 g/kgBB/minggu), cukup bila 5–10 g/kgBB/hari, dan baik bila lebih dari 10 g/kgBB/hari. Modul juga memuat nilai lain pada slide lain. Rujuk modul untuk kriteria yang digunakan di layanan Anda.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Kriteria pindah ke rawat jalan</h2>
+    <div class="progress"><span id="bar-pindah"></span></div>
+    <div class="progress-label" id="out-pindah"></div>
+    <div class="todo" id="cl-pindah" style="margin-top:12px">
+      <label class="item"><input type="checkbox"> Tidak ada komplikasi medis</label>
+      <label class="item"><input type="checkbox"> Edema berkurang</label>
+      <label class="item"><input type="checkbox"> Nafsu makan baik</label>
+      <label class="item"><input type="checkbox"> Kondisi klinis baik</label>
+      <label class="item"><input type="checkbox"> Untuk bayi ASI: kenaikan berat badan minimal 20 g/hari selama 5 hari berturut-turut, dan ibu sudah mendapat konseling</label>
+      <label class="item"><input type="checkbox"> Untuk bayi formula: pengasuh memahami cara menyiapkan formula dan susu formula dapat diakses berkelanjutan</label>
+      <label class="item"><input type="checkbox"> Ibu atau pengasuh dan keluarga dapat mengakses layanan rawat jalan</label>
+    </div>
+    <p class="hint">Pemulihan hingga BB/PB atau BB/TB ≥ -2 SD, dan/atau LiLA ≥ 12,5 cm, tanpa edema bilateral, dapat dilanjutkan di rawat jalan. Bila tidak tersedia layanan rawat jalan, pemulihan dilakukan di rawat inap.</p>
+  </div>
+
+  <div class="panel">
+    <h2>Kriteria sembuh atau selesai perawatan</h2>
+    <div class="progress"><span id="bar-sembuh"></span></div>
+    <div class="progress-label" id="out-sembuh"></div>
+    <div class="todo" id="cl-sembuh" style="margin-top:12px">
+      <label class="item"><input type="checkbox"> Kondisi klinis baik, balita sadar, dan tidak ada komplikasi medis</label>
+      <label class="item"><input type="checkbox"> Kenaikan berat badan cukup</label>
+      <label class="item"><input type="checkbox"> Tidak ada edema</label>
+      <label class="item"><input type="checkbox"> BB/PB atau BB/TB ≥ -2 SD</label>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>Persiapan pulang</h2>
+    <ul class="list">
+      <li>Libatkan ibu atau pengasuh dalam merawat anak sejak masih di layanan, misalnya dalam pemberian formula.</li>
+      <li>Berikan konseling pola makan dan stimulasi tumbuh kembang.</li>
+      <li>Anjurkan kontrol teratur sesuai protokol rawat jalan (MPI.2 dan MPI.3).</li>
+      <li>Lengkapi imunisasi dasar atau ulangan sesuai program PPI.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= RUJUKAN ================= -->
+<section class="tab" id="glos">
+  <div class="panel">
+    <h2>Rujukan dalam modul MPI.1</h2>
+    <p class="lead">Peta isi modul untuk membantu mencari bagian yang dibutuhkan.</p>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Bagian</th><th>Isi utama</th></tr>
+        <tr><td>Penentuan gizi buruk</td><td>Antropometri (BB/U, PB/U, BB/PB atau BB/TB, IMT/U, LiLA/U) dan pemeriksaan klinis, termasuk edema bilateral</td></tr>
+        <tr><td>Alur penapisan</td><td>Rawat inap dan rawat jalan, serta kelompok khusus balita di atas 6 bulan dengan BB kurang dari 4 kg</td></tr>
+        <tr><td>Tes nafsu makan</td><td>RUTF atau F-100, tabel jumlah RUTF, dan langkah tes F-100</td></tr>
+        <tr><td>Tiga tanda bahaya</td><td>Renjatan, letargis, dan diare dengan muntah atau dehidrasi</td></tr>
+        <tr><td>Empat fase</td><td>Stabilisasi, transisi, rehabilitasi, dan tindak lanjut</td></tr>
+        <tr><td>Tabel zat gizi</td><td>Kebutuhan energi dan protein menurut fase, serta spesifikasi F-75 dan F-100</td></tr>
+        <tr><td>Antibiotik dan zat gizi mikro</td><td>Tabel antibiotik dan suplementasi vitamin A, asam folat, multivitamin, serta zat besi</td></tr>
+        <tr><td>Stimulasi</td><td>Stimulasi terstruktur 15–30 menit per hari</td></tr>
+        <tr><td>Konseling KAP</td><td>Mengajak orang tua memberikan MTG melalui tahapan bangun keakraban, menjelaskan masalah dan solusi, dan membangun komitmen</td></tr>
+      </table>
+    </div>
+    <p class="hint">Dosis, jumlah formula, dan antibiotik harus diambil dari tabel resmi di modul MPI.1 dan pedoman terbaru.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">Alat bantu edukasi berdasarkan modul MPI.1 "Tata Laksana Umum Gizi Buruk pada Balita". Rujuk selalu ke modul asli dan tenaga kesehatan yang berwenang.</footer>
+
+<script>
+  // ---------- navigasi tab ----------
+  document.querySelectorAll('nav.tabs button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('nav.tabs button').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('section.tab').forEach(s => s.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  const val = id => {
+    const v = document.getElementById(id).value;
+    return v === '' ? null : parseFloat(v);
+  };
+  const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+  // ---------- checklist dengan progres ----------
+  function bindProgress(wrapId, outId, barId) {
+    const boxes = document.querySelectorAll('#' + wrapId + ' input[type=checkbox]');
+    const upd = () => {
+      const n = [...boxes].filter(b => b.checked).length;
+      document.getElementById(outId).textContent = n + ' dari ' + boxes.length + ' sudah dicek';
+      document.getElementById(barId).style.width = (n / boxes.length * 100) + '%';
+    };
+    boxes.forEach(b => b.addEventListener('change', upd));
+    upd();
+  }
+  bindProgress('todo10', 'out-langkah', 'bar-langkah');
+  bindProgress('cl-pindah', 'out-pindah', 'bar-pindah');
+  bindProgress('cl-sembuh', 'out-sembuh', 'bar-sembuh');
+
+  // ---------- penentuan status dan layanan ----------
+  function tentukan(d) {
+    const alasan = [];
+    const gbLila = d.lila !== null && d.lila < 11.5;
+    const gbZ = d.z !== null && d.z < -3;
+    const gbEdema = d.edema > 0;
+    const gb = gbLila || gbZ || gbEdema;
+    const gkLila = d.lila !== null && d.lila >= 11.5 && d.lila < 12.5;
+    const gkZ = d.z !== null && d.z >= -3 && d.z < -2;
+    const gk = !gb && (gkLila || gkZ);
+    const kompl = d.komp.length > 0;
+    const tandaBahaya = d.tb.length > 0;
+
+    if (gbLila) alasan.push('LiLA kurang dari 11,5 cm');
+    if (gbZ) alasan.push('Skor-Z BB/PB atau BB/TB kurang dari -3 SD');
+    if (gbEdema) alasan.push('Edema bilateral derajat ' + ['', 'ringan', 'sedang', 'berat'][d.edema]);
+
+    if (tandaBahaya) {
+      return {
+        kelas: 'warn', judul: 'Tanda bahaya ditemukan: tangani segera dan rujuk',
+        baris: ['Renjatan, letargis, atau diare dan muntah dengan dehidrasi memerlukan penanganan kegawatdaruratan segera.',
+                'Rujuk ke rawat inap (puskesmas perawatan, TFC, atau rumah sakit) sesuai ketersediaan layanan.',
+                'Tanda: ' + d.tb.map(x => ({tb1:'Renjatan', tb2:'Letargis', tb3:'Diare/muntah/dehidrasi'}[x])).join(', ')]
+      };
+    }
+
+    if (!gb && gk) {
+      return {
+        kelas: 'info', judul: 'Gizi kurang (di luar cakupan tata laksana gizi buruk pada modul ini)',
+        baris: ['Lakukan pemantauan dan tatalaksana gizi kurang sesuai pedoman yang berlaku.',
+                'Dasar: ' + (gkLila ? 'LiLA 11,5 sampai kurang dari 12,5 cm' : 'skor-Z -3 sampai kurang dari -2 SD')]
+      };
+    }
+    if (!gb) {
+      return {
+        kelas: 'ok', judul: 'Belum memenuhi kriteria gizi buruk',
+        baris: ['Lanjutkan pemantauan pertumbuhan dan penilaian klinis sesuai kebutuhan.']
+      };
+    }
+
+    const baris = ['Status: gizi buruk' + (kompl ? ' dengan komplikasi medis' : '') + '.'];
+    if (alasan.length) baris.push('Dasar: ' + alasan.join('; ') + '.');
+
+    if (d.usia !== null && d.usia < 6) {
+      baris.push('Bayi di bawah 6 bulan dengan gizi buruk harus dirawat inap, dengan atau tanpa komplikasi.');
+      baris.push(d.asi === 'ada'
+        ? 'Jalur: ada kemungkinan ASI. Lihat tab "Bayi di bawah 6 bulan".'
+        : 'Jalur: tidak ada kemungkinan ASI. Lihat tab "Bayi di bawah 6 bulan".');
+      return { kelas: 'warn', judul: 'Rawat inap di rumah sakit (bayi di bawah 6 bulan)', baris };
+    }
+    if (kompl) {
+      baris.push('Komplikasi medis ditemukan: rujuk dan rawat inap di layanan yang mampu menangani komplikasi.');
+      return { kelas: 'warn', judul: 'Rawat inap (gizi buruk dengan komplikasi)', baris };
+    }
+    if (d.bb !== null && d.bb < 4) {
+      baris.push('Balita di atas 6 bulan dengan berat badan kurang dari 4 kg termasuk kelompok khusus dan dirawat inap di rumah sakit.');
+      return { kelas: 'warn', judul: 'Rawat inap, kelompok khusus (BB kurang dari 4 kg)', baris };
+    }
+    baris.push('Tanpa komplikasi medis: lanjutkan ke tes nafsu makan dengan RUTF (tab "Tes nafsu makan").');
+    baris.push('Nafsu makan baik: rawat jalan di puskesmas. Nafsu makan buruk: rawat inap.');
+    return { kelas: 'amber', judul: 'Gizi buruk tanpa komplikasi, perlu tes nafsu makan', baris };
+  }
+
+  function tampil(hasil) {
+    const isi = hasil.baris.filter(Boolean).map(x => '<li>' + esc(x) + '</li>').join('');
+    document.getElementById('hasilAlur').innerHTML =
+      '<div class="result ' + hasil.kelas + '"><h3>' + esc(hasil.judul) + '</h3><ul>' + isi + '</ul>' +
+      '<p class="hint">Hasil ini mengikuti alur modul MPI.1 dan tidak menggantikan penilaian klinis.</p></div>';
+    document.getElementById('hasilAlur').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  document.getElementById('tentukan').addEventListener('click', () => {
+    const d = {
+      usia: val('usia'), bb: val('bb'), lila: val('lila'), z: val('z'),
+      edema: parseInt(document.getElementById('edema').value, 10),
+      asi: document.getElementById('asi').value,
+      komp: [...document.querySelectorAll('#komp input:checked')].map(i => i.value),
+      tb: ['tb1','tb2','tb3'].filter(id => document.getElementById(id).checked)
+    };
+    if (d.usia === null || d.usia < 0 || d.usia > 59) {
+      document.getElementById('hasilAlur').innerHTML =
+        '<div class="result warn"><h3>Lengkapi usia</h3><p>Isi usia balita dalam bulan, antara 0 sampai 59.</p></div>';
+      return;
+    }
+    tampil(tentukan(d));
+  });
+
+  document.getElementById('resetAlur').addEventListener('click', () => {
+    document.querySelectorAll('#alur input').forEach(i => { if (i.type === 'checkbox') i.checked = false; else i.value = ''; });
+    document.getElementById('edema').value = '0';
+    document.getElementById('asi').value = 'ada';
+    document.getElementById('hasilAlur').innerHTML = '';
+  });
+
+  // ---------- tes nafsu makan ----------
+  document.getElementById('cekNafsu').addEventListener('click', () => {
+    const hasil = document.getElementById('hasilNafsu').value;
+    const out = document.getElementById('hasilNafsuOut');
+    if (hasil === 'baik') {
+      out.innerHTML = '<div class="result ok"><h3>Nafsu makan baik</h3><ul>' +
+        '<li>Tindak lanjut: rawat jalan, jika tidak ada komplikasi medis.</li>' +
+        '<li>Berikan konseling kepada ibu atau pengasuh tentang cara pemberian dan penyimpanan RUTF.</li></ul></div>';
+    } else {
+      out.innerHTML = '<div class="result warn"><h3>Nafsu makan buruk</h3><ul>' +
+        '<li>Tindak lanjut: rawat inap.</li>' +
+        '<li>Jika RUTF tidak tersedia atau hasilnya buruk, tes dengan F-100 sesuai langkah modul. Bila F-100 juga buruk, rujuk.</li></ul></div>';
+    }
+  });
+
+  // ---------- kenaikan berat badan ----------
+  document.getElementById('hitungGain').addEventListener('click', () => {
+    const bb1 = val('bb1'), bb2 = val('bb2'), hari = val('hari'), ref = val('bbRef');
+    const out = document.getElementById('hasilGain');
+    if (bb1 === null || bb2 === null || hari === null || ref === null || hari <= 0 || ref <= 0) {
+      out.innerHTML = '<div class="result info"><h3>Lengkapi data</h3><p>Isi berat badan awal, akhir, jumlah hari, dan berat badan referensi (kg).</p></div>';
+      return;
+    }
+    const g = (bb2 - bb1) / hari / ref;
+    let kelas, kategori, tindak;
+    if (g < 5) {
+      kelas = 'warn'; kategori = 'Kurang';
+      tindak = 'Perlu penilaian ulang lengkap.';
+    } else if (g <= 10) {
+      kelas = 'amber'; kategori = 'Cukup';
+      tindak = 'Periksa apakah target asupan terpenuhi, dan pertimbangkan infeksi yang belum terdeteksi.';
+    } else {
+      kelas = 'ok'; kategori = 'Baik';
+      tindak = 'Lanjutkan terapi sesuai rencana.';
+    }
+    const pos = Math.max(0, Math.min(g, 15)) / 15 * 100;
+    out.innerHTML = '<div class="result ' + kelas + '"><h3>' + kategori + ': ' + g.toFixed(1) + ' g/kgBB/hari</h3>' +
+      '<div class="scale" aria-hidden="true"><div class="zones"><span></span><span></span><span></span></div>' +
+      '<div class="marker" style="left:' + pos + '%"></div></div>' +
+      '<div class="scale-labels"><span style="left:0%">0</span><span style="left:33.3%">5</span><span style="left:66.7%">10</span><span style="left:100%">15+</span></div>' +
+      '<ul><li>Tindak lanjut: ' + esc(tindak) + '</li></ul></div>';
+  });
+</script>
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"dc035d1dafe443d792cebe7e471273f7","r":1,"spa":2}' crossorigin="anonymous"></script>
+</body>
+</html>
